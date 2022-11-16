@@ -18,8 +18,13 @@ public class APIUtility {
      * a movie from OMDB
      */
     public static void getMoviesFromOMDB(String searchTerm) throws IOException, InterruptedException {
+        //RegEx = Regular Expressions - looking for a pattern of characters
+        System.out.printf("Before: '%s'%n",searchTerm);
+        searchTerm = searchTerm.replaceAll(" ","%20");
+        System.out.printf("After: '%s'%n",searchTerm);
+
         //This is the same search http String that you used in your browser
-        String uri = "http://www.omdbapi.com/?apikey=4a1010ab&s=john%20wick";
+        String uri = "http://www.omdbapi.com/?apikey=4a1010ab&s="+searchTerm;
 
         //configure the environment to make a HTTP request (this includes an update to
         //the module-info.java file

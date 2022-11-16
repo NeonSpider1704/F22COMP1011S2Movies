@@ -18,8 +18,8 @@ public class Main extends Application {
     }
 
     public static void main(String[] args) throws IOException, InterruptedException {
-//        APIUtility.getMoviesFromOMDB("boyah");
-        APIResponse apiResponse = APIUtility.getMoviesFromFile();
+        APIUtility.getMoviesFromOMDB("finding nemo");
+//        APIResponse apiResponse = APIUtility.getMoviesFromFile();
         launch();
     }
 }
