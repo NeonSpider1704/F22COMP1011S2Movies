@@ -1,5 +1,8 @@
 package com.example.f22comp1011s2movies;
 
+import com.google.gson.Gson;
+import com.google.gson.stream.JsonReader;
+import java.io.FileReader;
 import java.io.IOException;
 import java.net.URI;
 import java.net.http.HttpClient;
@@ -27,6 +30,34 @@ public class APIUtility {
         HttpResponse<Path> httpResponse = client.send(httpRequest, HttpResponse
                                                     .BodyHandlers
                                                     .ofFile(Paths.get("movies.json")));
+    }
 
+    /**
+     * This method will read from "movies.json" and create an APIResponse object
+     */
+    public static APIResponse getMoviesFromFile()
+    {
+        //Create a GSON object.  GSON is the Google library that can read and write
+        //JSON
+        //in order to use this library, we need to update the pom.xml and module-info.java
+        //files.  Don't forget to reload the Maven dependencies
+        Gson gson = new Gson();
+
+        APIResponse apiResponse = null;
+
+        //open the file and pass it into the the Gson object to covert JSON objects
+        //to Java objects
+        try(
+                FileReader fileReader = new FileReader("movies.json");
+                JsonReader jsonReader = new JsonReader(fileReader);
+                )
+        {
+            apiResponse = gson.fromJson(jsonReader, APIResponse.class);
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+        }
+        return apiResponse;
     }
 }
