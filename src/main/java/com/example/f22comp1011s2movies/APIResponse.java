@@ -12,4 +12,8 @@ public class APIResponse {
 
     @SerializedName("Response")
     private String response;
+
+    public Movie[] getSearch() {
+        return search;
+    }
 }

@@ -16,4 +16,9 @@ public class Movie {
 
     @SerializedName("Poster")
     private String poster;
+
+    public String toString()
+    {
+        return String.format("%s-%s",title,year);
+    }
 }
