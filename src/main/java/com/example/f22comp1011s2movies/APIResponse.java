@@ -16,6 +16,21 @@ public class APIResponse {
     @SerializedName("Response")
     private String response;
 
+    @SerializedName("Error")
+    private String error;
+
+    public String getTotalResults() {
+        return totalResults;
+    }
+
+    public String getResponse() {
+        return response;
+    }
+
+    public String getError() {
+        return error;
+    }
+
     public Movie[] getSearch() {
         return search;
     }
@@ -23,5 +38,13 @@ public class APIResponse {
     public List<Movie> getMovies()
     {
         return Arrays.asList(search);
+    }
+
+    /**
+     * This method returns true if the JSON data had a value of "True"
+     */
+    public boolean resultsReturned()
+    {
+        return response.equalsIgnoreCase("True");
     }
 }
