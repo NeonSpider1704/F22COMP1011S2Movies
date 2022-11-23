@@ -47,5 +47,7 @@ public class SearchViewController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         resultsBox.setVisible(false);
         msgLabel.setVisible(false);
+
+
     }
 }
