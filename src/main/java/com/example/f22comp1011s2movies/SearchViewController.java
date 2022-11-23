@@ -74,12 +74,20 @@ public class SearchViewController implements Initializable {
        listView.getSelectionModel()
                 .selectedItemProperty()
                 .addListener((obs, old, movieSelected) -> {
-                    try {
-                        posterImageView.setImage(new Image(movieSelected.getPoster()));
-                    } catch (IllegalArgumentException e) {
-                        posterImageView.setImage(new Image(Main.class
-                                .getResourceAsStream("images/default_poster.png")));
+                    if (movieSelected!=null)
+                    {
+                        selectedVBox.setVisible(true);
+                        try {
+                            posterImageView.setImage(new Image(movieSelected.getPoster()));
+                        } catch (IllegalArgumentException e) {
+                            posterImageView.setImage(new Image(Main.class
+                                    .getResourceAsStream("images/default_poster.png")));
 
+                        }
+                    }
+                    else
+                    {
+                        selectedVBox.setVisible(false);
                     }
                 });
     }
