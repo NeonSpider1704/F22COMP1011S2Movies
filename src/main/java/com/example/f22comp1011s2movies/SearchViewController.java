@@ -10,6 +10,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -39,15 +40,18 @@ public class SearchViewController implements Initializable {
     }
 
     @FXML
-    void search(ActionEvent event) {
+    void search(ActionEvent event) throws IOException, InterruptedException {
+        //if the search is pushed, call the API with whatever is in the search text field
+        APIResponse apiResponse = APIUtility.getMoviesFromOMDB(searchTextField.getText());
 
+        //update the listview with the movies returned by the API
+        resultsBox.setVisible(true);
+        listView.getItems().addAll(apiResponse.getMovies());
     }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         resultsBox.setVisible(false);
         msgLabel.setVisible(false);
-
-
     }
 }

@@ -17,11 +17,9 @@ public class APIUtility {
      * This method will create a JSON file with the search results for
      * a movie from OMDB
      */
-    public static void getMoviesFromOMDB(String searchTerm) throws IOException, InterruptedException {
+    public static APIResponse getMoviesFromOMDB(String searchTerm) throws IOException, InterruptedException {
         //RegEx = Regular Expressions - looking for a pattern of characters
-        System.out.printf("Before: '%s'%n",searchTerm);
         searchTerm = searchTerm.replaceAll(" ","%20");
-        System.out.printf("After: '%s'%n",searchTerm);
 
         //This is the same search http String that you used in your browser
         String uri = "http://www.omdbapi.com/?apikey=4a1010ab&s="+searchTerm;
@@ -32,9 +30,16 @@ public class APIUtility {
         HttpRequest httpRequest = HttpRequest.newBuilder().uri(URI.create(uri)).build();
 
         //send the httpRequest and save the result in a file called "movies.json"
-        HttpResponse<Path> httpResponse = client.send(httpRequest, HttpResponse
-                                                    .BodyHandlers
-                                                    .ofFile(Paths.get("movies.json")));
+//        HttpResponse<Path> httpResponse = client.send(httpRequest, HttpResponse
+//                                                    .BodyHandlers
+//                                                    .ofFile(Paths.get("movies.json")));
+
+        HttpResponse<String> response = client.send(httpRequest, HttpResponse
+                                                .BodyHandlers.ofString());
+
+        //parse the JSON object and return it as a Java object
+        Gson gson = new Gson();
+        return gson.fromJson(response.body(),APIResponse.class);
     }
 
     /**

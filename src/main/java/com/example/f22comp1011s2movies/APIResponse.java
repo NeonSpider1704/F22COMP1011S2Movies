@@ -2,6 +2,9 @@ package com.example.f22comp1011s2movies;
 
 import com.google.gson.annotations.SerializedName;
 
+import java.util.Arrays;
+import java.util.List;
+
 public class APIResponse {
 
     //in the JSON object, it is called Search and in the Java object it is called search
@@ -15,5 +18,10 @@ public class APIResponse {
 
     public Movie[] getSearch() {
         return search;
+    }
+
+    public List<Movie> getMovies()
+    {
+        return Arrays.asList(search);
     }
 }
