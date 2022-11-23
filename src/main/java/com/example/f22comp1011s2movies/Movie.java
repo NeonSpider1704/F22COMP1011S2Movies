@@ -31,4 +31,24 @@ public class Movie implements Comparable<Movie>{
         else
             return -(this.year.compareTo(otherMovie.year));
     }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public String getYear() {
+        return year;
+    }
+
+    public String getImdbID() {
+        return imdbID;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public String getPoster() {
+        return poster;
+    }
 }
