@@ -37,8 +37,9 @@ public class SearchViewController implements Initializable {
     private VBox selectedVBox;
 
     @FXML
-    void getDetails(ActionEvent event) {
-
+    void getDetails(ActionEvent event) throws IOException {
+        Movie movieSelected = listView.getSelectionModel().getSelectedItem();
+        SceneChanger.changeScenes(event,"info-view.fxml",movieSelected.getImdbID());
     }
 
     @FXML
