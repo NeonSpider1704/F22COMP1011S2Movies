@@ -1,21 +1,51 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.StackPane?>
-
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
 
 <AnchorPane prefHeight="1000.0" prefWidth="800.0" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.f22comp1011s2movies.InfoViewController">
    <children>
-      <StackPane layoutX="268.0" layoutY="303.0" prefHeight="1000.0" prefWidth="800.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <HBox layoutX="252.0" layoutY="463.0" prefHeight="1000.0" prefWidth="800.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="300.0">
          <children>
-            <Label id="msgLabel" fx:id="movieInfoLabel" prefHeight="500.0" prefWidth="500.0" text="Label" wrapText="true">
-               <StackPane.margin>
-                  <Insets top="100.0" />
-               </StackPane.margin>
-            </Label>
+            <ImageView fx:id="imageView" fitHeight="500.0" fitWidth="300.0" pickOnBounds="true" preserveRatio="true" />
+            <GridPane id="msgLabel" prefWidth="500.0">
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <Label text="Title" />
+                  <Label text="Genre" GridPane.rowIndex="1" />
+                  <Label text="Rated" GridPane.rowIndex="2" />
+                  <Label text="Year" GridPane.rowIndex="3" />
+                  <Label text="Plot" GridPane.rowIndex="4" />
+                  <Label text="Language" GridPane.rowIndex="5" />
+                  <Label text="Ratings" GridPane.rowIndex="6" />
+                  <Label fx:id="titleLabel" text="Label" GridPane.columnIndex="1" />
+                  <Label fx:id="genreLabel" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                  <Label fx:id="ratedLabel" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                  <Label fx:id="yearLabel" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                  <Label fx:id="plotLabel" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                  <Label fx:id="languageLabel" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                  <ListView fx:id="ratingsListView" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+               </children>
+            </GridPane>
          </children>
-      </StackPane>
+      </HBox>
    </children>
 </AnchorPane>

@@ -6,6 +6,12 @@ import java.util.Arrays;
 import java.util.List;
 
 public class MovieInfo {
+    @SerializedName("Response")
+    private String response;
+
+    @SerializedName("Error")
+    private String error;
+
     @SerializedName("Title")
     private String title;
 

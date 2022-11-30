@@ -4,6 +4,11 @@
     -fx-background-size: cover;
 }
 
+.label{
+    -fx-text-fill: #e0820f;
+    -fx-font: bold 30pt "Forte";
+}
+
 #msgLabel{
     -fx-text-fill: #e0820f;
     -fx-font: bold 30pt "Forte";
