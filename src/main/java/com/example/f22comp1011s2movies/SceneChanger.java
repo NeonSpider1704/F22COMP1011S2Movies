@@ -14,7 +14,7 @@ public class SceneChanger {
         FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource(fxmlFileName));
         Scene scene = new Scene(fxmlLoader.load());
 
-        InfoViewController controller = fxmlLoader.getController();
+        MovieInfoControllers controller = fxmlLoader.getController();
         controller.getMovieInfo(imdbID);
 
         //get the Stage object from the ActionEvent

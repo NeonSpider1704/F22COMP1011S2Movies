@@ -10,5 +10,8 @@ public class Rating {
     @SerializedName("Value")
     private String value;
 
-
+    public String toString()
+    {
+        return source +"-" +value;
+    }
 }
