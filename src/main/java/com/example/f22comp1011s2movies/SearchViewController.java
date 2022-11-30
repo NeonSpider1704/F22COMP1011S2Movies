@@ -1,10 +1,12 @@
 package com.example.f22comp1011s2movies;
 
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
+import javafx.scene.control.ProgressBar;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -37,6 +39,9 @@ public class SearchViewController implements Initializable {
     private VBox selectedVBox;
 
     @FXML
+    private ProgressBar progressBar;
+
+    @FXML
     void getDetails(ActionEvent event) throws IOException, InterruptedException {
         Movie movieSelected = listView.getSelectionModel().getSelectedItem();
         SceneChanger.changeScenes(event,"info-view.fxml",movieSelected.getImdbID());
@@ -44,6 +49,39 @@ public class SearchViewController implements Initializable {
 
     @FXML
     void search(ActionEvent event) throws IOException, InterruptedException {
+
+        progressBar.setVisible(true);
+
+        //simulate that the API took 3 seconds to return
+        Thread searchThread = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                for (double progress=.1; progress<=1 ; progress+=0.1)
+                {
+                    try {
+                        Thread.sleep(300);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+
+                    final double progressAmount = progress;
+
+                    Platform.runLater(new Runnable() {
+                        @Override
+                        public void run() {
+                            if (progressAmount>=0.92)
+                                progressBar.setVisible(false);
+                            else
+                                progressBar.setProgress(progressAmount);
+                        }
+                    });
+                }
+            }
+        });
+        searchThread.start();
+
+
+
         //if the search is pushed, call the API with whatever is in the search text field
         APIResponse apiResponse = APIUtility.getMoviesFromOMDB(searchTextField.getText());
 
@@ -69,6 +107,7 @@ public class SearchViewController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         resultsBox.setVisible(false);
         msgLabel.setVisible(false);
+        progressBar.setVisible(false);
 
         //configure a listener so that when a movie is selected from the listview
         //it displays the poster art
